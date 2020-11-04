@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e314a67c3c4245dc9c71d01b85628751" Name="Diagram1">
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.Cart" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.CartStatu" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.MemberRole" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.Member" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.Role" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.ShippingDetail" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyOnlineStoreModel.SlideImage" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="dbMyOnlineStoreModel.FK__Cart__CartStatus__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyOnlineStoreModel.FK__Product__Categor__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyOnlineStoreModel.FK__MemberRol__RoleI__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyOnlineStoreModel.FK__ShippingD__Membe__1CF15040" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

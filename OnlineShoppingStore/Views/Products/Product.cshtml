@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OnlineShoppingStore.Models.Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+@Html.ActionLink("Add New", "Create", null, new { @style = "color:#fff;text-decoration:none; margin-top:-55px;margin-right:20px;", @class = "pull-right btn btn-primary" })
+<table class="table table-striped">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th>Action  </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>

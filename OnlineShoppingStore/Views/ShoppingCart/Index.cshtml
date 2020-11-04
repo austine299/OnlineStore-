@@ -1,0 +1,52 @@
+﻿@using OnlineShoppingStore.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayoutPage.cshtml";
+}
+
+<h2>Cart</h2>
+<table border="0" class=" table-hover table-striped text-center" style="height:200px; width:70%;margin-left:50px; font-size:20px;">
+    <tr>
+        <th class="text-center">Image</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-center">Sub Total</th>
+    </tr>
+    @foreach (var cart in (List<Carts>)Session["Cart"])
+    {
+        <tr class="" style="border:1px solid #ccc;">
+            <td>
+                <img class="img-responsive" title="Click to View Product details" style="cursor:pointer; height:50px; width:60px;"
+                     src="~/ProductImg/@cart.Product.ProductImg" />
+            </td>
+            <td>@cart.Product.ProductName</td>
+            <td>@cart.Product.Price</td>
+            <td>@cart.Quantity</td>
+            <td>@(String.Format("{0:N0}", cart.Product.Price * cart.Quantity))</td>
+            <td>
+                @Html.ActionLink("Remove", "Delete", "ShoppingCart", new { id = cart.Product.ProductId }, new { onclick = "return confirm ('Are you sure you want to remove this..? ')" })
+            </td>
+        </tr>
+    }
+</table>
+
+<table border="0" class="table-striped pull-right text-center mt-5" style=" height:100px; width:350px; font-size:20px; margin-top:30px;">
+    <tr>
+        <th>Total</th>
+        <td>
+            @{
+                List<Carts> temp = (List<Carts>)Session["Cart"];
+                var total = String.Format("{0:N0}", temp.Sum(x => x.Quantity * x.Product.Price));
+            }
+            &#8358 @total
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><a href="@Url.Action("Create","ShippingDetails")" class="btn btn-danger">Proceed To CheckOut</a></td>
+    </tr>
+</table>
+<br />
+<br />
+@Html.ActionLink("Continue Shopping", "Shop","Home")
+

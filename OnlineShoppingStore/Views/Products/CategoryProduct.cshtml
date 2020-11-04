@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "CategoryProduct";
+    Layout = "~/Views/Shared/_HomeLayoutPage.cshtml";
+}
+
+<div style="margin-top:50px;">
+    <div style="margin-bottom:10px;">
+        <span><i>@Html.ActionLink("Home", "Index", "Home")</i> &gt;&gt; <i>@Html.ActionLink("Shop", "Shop", "Home")</i></span> &gt;&gt; @ViewBag.category.CategoryName
+    </div>
+    <div class="title" style="color:orangered;">
+        Category Products <span class="glyphicon glyphicon-book"></span>
+    </div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            @foreach (var product in ViewBag.products)
+            {
+                <div class="col-md-3 col-sm-3 col-xm-6" style="margin:5px;">
+                    <div class="thumbnail product-item row" style="height:430px;">
+                        <div class="row">
+                            <div class="row" style="background-color:black;height:30px;line-height:30px; width:60px;position:relative; left:30px; text-align:center; color:#fff;">
+                                @if (product.IsFeatured == true)
+                                {
+                                    <div class="product-item col-md-12">New</div>
+                                }
+                                else
+                                {
+                                    <div class="product-item col-md-12">Old</div>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <img class="img-responsive" title="Click to View Product details" style="cursor:pointer; height:230px; width:260px;"
+                                     src="~/ProductImg/@product.ProductImg" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div style="font-weight:bold;" class="col-md-6">
+                                <span style="font-weight:bold;color:gold;">@product.ProductName</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span>@Html.ActionLink("Details", "Details", "Home", new { id = product.ProductId }, new { @class = "pull-right" })</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="text-decoration:underline;">Price &#8358 @product.Price</p>
+                            </div>
+                            <div class="col-md-6">
+                                @if (product.Quantity > 0)
+                                {
+                                <span class="pull-right" style="margin-top:0px; background-color:darkgoldenrod;color:#fff; text-decoration:none; height:30px;width:100px;border-radius:5px;line-height:30px;text-align:center;">
+                                    @Html.ActionLink("Add To Cart", "OrderNow", "ShoppingCart", new { id = product.ProductId }, null)
+                                </span>
+                                    <p style="color:blue;" class="pull-right">Available</p>
+                                }
+                                else
+                                {
+                                    <p style="color:red;" class="pull-right">Not Available</p>
+
+                                    @Html.ActionLink("Details", "ProductDetails", "Home", new { id = product.ProductId }, new { @class = "pull-right" })
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

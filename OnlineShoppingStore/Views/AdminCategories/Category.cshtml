@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OnlineShoppingStore.Models.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+@Html.ActionLink("Add New", "Create",null,new { @class="pull-right btn btn-primary", @style = "color:#fff;text-decoration:none; margin-top:-55px;margin-right:20px;" } )
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Is Active
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @if (item.IsActive != null)
+                {
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.IsDelete)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }, new { @class = "btn btn-danger" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+            </td>
+        </tr>
+    }
+
+</table>

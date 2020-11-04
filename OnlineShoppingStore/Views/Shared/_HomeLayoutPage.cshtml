@@ -1,0 +1,111 @@
+﻿@using OnlineShoppingStore.Models
+@using OnlineShoppingStore.Repository
+@{ 
+    ICategoryRepository iCategoryRepository = new CategoryRepository();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/Homestyle.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+   
+</head>
+<body style="background-image: url('../../BackgrdImg/bkgrd4.jpg'); background-size:cover;background-repeat:no-repeat;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Online Shopping Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color:gold" })
+                <h4 style="color:#fff;">My Shop</h4>
+            </div>
+
+            <div class="navbar-collapse collapse " style="margin-top:30px; position:relative;left:20%;">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    <li>@Html.ActionLink("shop", "Shop", "Home")</li>
+                    <li>@Html.ActionLink("About", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" data-display="static"><span class="glyphicon glyphicon-user"></span> Account <span class="caret"></span></a>
+                        <div class="dropdown-menu">
+                            <div>@Session["FirstName"]</div>
+                            <div class="divider"></div>
+                            <div><a href="@Url.Action("Login","Members")">Login</a></div>
+                            <div>    <a href="@Url.Action("Create","Members")">Register</a></div>
+                            <div  class="divider"></div>
+                            <a href="">Settings</a>
+                        </div>
+                    </li>
+                    <li style="font-weight:bold;font-size:30px; color:gold" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-display="static">
+                            <span class="glyphicon glyphicon-shopping-cart"></span><sup style="color:red;"> </sup>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="color:black;">
+                           
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("Index", "ShoppingCart") " class="btn btn-danger pull-right">Go to Cart</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid body-content" style="margin-top:30px;">
+        <div class="olSearch fr pull-right " style="margin-top:20px; position:relative;">
+            <input type="text" placeholder="Enter Keyword" name="searchKey" class="inputComn houseText form-control" />
+            <div class="searchIcon" style="position:relative; top:-34px; margin-left:180px; ">
+                <button type="button" class="searchBtn" style="background-color:blue;border:none ;border-radius:0px 5px 5px 0px; ">
+                    <img src="~/Icons/srch.png" style=" height: 32px;" />
+
+                </button>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-start">
+                <div class="col-md-1 navbar-fixed-top" style="margin-top:85px;padding:10px;">
+                    <div class="text-justify" style="font-weight:bold;font-size:13px;">
+                        <h4 style=" background-color:gold;height:30px;width:110px;line-height:30px;border-radius:2px;margin-left:-5px;"class="text-center">CATEGORY</h4>
+
+                        @foreach (var category in iCategoryRepository.findAll())
+                        {
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("CategoryProduct", "Products", new { id=category.CategoryId})">
+                                        @category.CategoryName
+                                    </a>
+                                </li>
+                            </ul>
+
+
+
+                        }
+                    </div>
+                </div>
+                <div class="col-md-11 " style="margin-left:100px;">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <footer style="margin-left:100px;">
+            <hr />
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

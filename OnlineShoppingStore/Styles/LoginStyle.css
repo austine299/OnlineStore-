@@ -1,0 +1,6 @@
+﻿body {
+    background-image: url('../Images/bk.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+}
